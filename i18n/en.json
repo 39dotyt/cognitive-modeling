@@ -1,0 +1,31 @@
+{
+  "TITLE": "Cognitive Modeling",
+  "LANG": "Language",
+  "PANEL": {
+    "NEW": "New",
+    "SAVE": "Save",
+    "SAVE-AS": "Save as…",
+    "LOAD": "Load",
+    "QUIT": "Quit"
+  },
+  "PAGE": {
+    "GRAPH": "Graph",
+    "IMPULSE": "Impulse process",
+    "DETAILS": "Computation details"
+  },
+  "STEPS-AMOUNT": "Amount of steps…",
+  "ERROR": {
+    "IisNAVN": "Input is not a valid number!"
+  },
+  "DETAILS": {
+    "TO-EXCEL": "Export to Excel",
+    "GRAPH-MATRIX": "Graph matrix",
+    "IMPULSE-VECTOR": "Impulse vector",
+    "NODE-VALUES": "Nodes values",
+    "INTERMEDIATE-MATRICES": "Intermediate matrices"
+  },
+  "GRAPH": {
+    "FORBIDDEN-NODE-TO-ITSELF": "It is forbidden to connect a node to itself!",
+    "FORBIDDEN-TWO-IMPULSES-BETWEEN-TWO-NODES": "It is forbidden to create more than one edge between two nodes!"
+  }
+}

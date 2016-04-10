@@ -1,0 +1,95 @@
+<div class="mdl-grid" #mdl>
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input (change)="recalculate($event)" class="mdl-textfield__input" type="text" value="10" pattern="[1-9][0-9]{0,3}" #input>
+      <label class="mdl-textfield__label">{{'STEPS-AMOUNT'|translate}}</label>
+      <span class="mdl-textfield__error">{{'ERROR.IisNAVN'|translate}}</span>
+    </div>
+  </div>
+
+  <template [ngIf]="res">
+
+    <!--<div class="mdl-cell mdl-cell&#45;&#45;12-col">-->
+      <!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;raised mdl-js-ripple-effect mdl-button&#45;&#45;colored"-->
+          <!--(click)="exportDetails()">-->
+        <!--{{"DETAILS.TO-EXCEL"|translate}}-->
+      <!--</button>-->
+    <!--</div>-->
+
+    <div class="mdl-cell mdl-cell--12-col">
+      <h5>{{"DETAILS.GRAPH-MATRIX"|translate}}</h5>
+      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+        <tr>
+          <th></th>
+          <th *ngFor="#node of res.nodes">{{node.label}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="#row of res.matrices[0]; #i = index">
+          <th>{{res.nodes[i].label}}</th>
+          <td *ngFor="#column of row">{{column}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col">
+      <h5>{{"DETAILS.IMPULSE-VECTOR"|translate}}</h5>
+      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+        <tr>
+          <th></th>
+          <th *ngFor="#node of res.nodes">{{node.label}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="#row of res.impulses; #i = index">
+          <th>P{{i + 1}}</th>
+          <td *ngFor="#column of row">{{column}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col">
+      <h5>{{"DETAILS.NODE-VALUES"|translate}}</h5>
+      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+        <tr>
+          <th></th>
+          <th *ngFor="#node of res.nodes">{{node.label}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="#row of res.values; #i = index">
+          <th>X{{i}}</th>
+          <td *ngFor="#column of row">{{column}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col">
+      <h5>{{"DETAILS.INTERMEDIATE-MATRICES"|translate}}</h5>
+      <template ngFor #matrix [ngForOf]="res.matrices" #i="index">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+            *ngIf="i !== 0">
+          <thead>
+          <tr>
+            <th></th>
+            <th *ngFor="#node of res.nodes">{{node.label}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="#row of matrix; #i = index">
+            <th>{{res.nodes[i].label}}</th>
+            <td *ngFor="#column of row">{{column}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </template>
+    </div>
+
+  </template>
+</div>

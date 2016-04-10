@@ -1,0 +1,33 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-drawer-button">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="#" (click)="panel.create()">
+          {{'PANEL.NEW'|translate}}</a>
+        <a class="mdl-navigation__link" href="#" (click)="panel.save()">
+          {{'PANEL.SAVE'|translate}}</a>
+        <a class="mdl-navigation__link" href="#" (click)="panel.save(true)">
+          {{'PANEL.SAVE-AS'|translate}}</a>
+        <a class="mdl-navigation__link" href="#" (click)="panel.load()">
+          {{'PANEL.LOAD'|translate}}</a>
+        <a class="mdl-navigation__link" href="#" (click)="panel.quit()">
+          {{'PANEL.QUIT'|translate}}</a>
+      </nav>
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label lang-toggle">
+        <select class="mdl-selectfield__select" [(ngModel)]="currentLanguage" (change)="switchLanguage($event)">
+          <option value="en">EN</option>
+          <option value="ru">RU</option>
+        </select>
+        <label class="mdl-selectfield__label">{{'LANG'|translate}}</label>
+      </div>
+    </div>
+
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+      <a *ngFor="#route of routes; #i = index" (click)="tabSwitched($event)" [routerLink]="[route.name]" class="mdl-layout__tab-style" [ngClass]="{'is-active': i === 0}" #tab>{{route.title|translate}}</a>
+    </div>
+  </header>
+  <main class="mdl-layout__content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

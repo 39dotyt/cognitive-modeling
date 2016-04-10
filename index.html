@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Cognitive Modeling</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+<script src="node_modules/systemjs/dist/system.src.js"></script>
+<script src="node_modules/rxjs/bundles/Rx.js"></script>
+<script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+<script src="node_modules/angular2/bundles/router.dev.js"></script>
+<script src="node_modules/angular2/bundles/http.dev.js"></script>
+
+<script>
+  System.config({
+    packages: {
+      app: {
+        format: 'register',
+        defaultExtension: 'js'
+      },
+      'ng2-translate': {
+        defaultExtension: 'js'
+      }
+    },
+    map: {
+      'ng2-translate': 'node_modules/ng2-translate'
+    }
+  });
+  System.import('app/main').then(null, console.error.bind(console));
+</script>
+
+<script src="node_modules/material-design-lite/material.min.js"></script>
+<script src="node_modules/mdl-selectfield/mdl-selectfield.min.js"></script>
+
+<link href="node_modules/material-design-lite/material.min.css" rel="stylesheet" type="text/css"/>
+<link href="node_modules/mdl-selectfield/mdl-selectfield.min.css" rel="stylesheet" type="text/css"/>
+<!-- TODO: store Material Icons locally -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="node_modules/vis/dist/vis.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<body>
+<base href="/">
+
+<app>
+  <div class="loading mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+</app>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<dialog class="mdl-dialog" #dialog>
+  <h4 class="mdl-dialog__title">{{title}}</h4>
+  <form (submit)="onConfirm($event)">
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" required [(ngModel)]="node.label">
+        <label class="mdl-textfield__label">Node label&hellip;</label>
+      </div>
+
+      <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label">-->
+        <!--Node color:-->
+        <!--<input type="color" required [(ngModel)]="node.color" value="#20603d">-->
+        <!--&lt;!&ndash;<label class="mdl-textfield__label">Node label&hellip;</label>&ndash;&gt;-->
+      <!--</div>-->
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" required pattern="-?[0-9]+" [(ngModel)]="node.value">
+        <label class="mdl-textfield__label">Node value&hellip;</label>
+        <span class="mdl-textfield__error">Input is not integer!</span>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" required pattern="-?[0-9]+" [(ngModel)]="node.impulse">
+        <label class="mdl-textfield__label">Node impulse&hellip;</label>
+        <span class="mdl-textfield__error">Input is not integer!</span>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        Confirm
+      </button>
+      <button type="button" class="mdl-button close mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</dialog>
