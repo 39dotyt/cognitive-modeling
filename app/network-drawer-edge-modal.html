@@ -4,21 +4,27 @@
     <div class="mdl-dialog__content">
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" required [(ngModel)]="edge.label">
-        <label class="mdl-textfield__label">Edge label&hellip;</label>
+        <label class="mdl-textfield__label">
+          {{'NETWORK-DRAWER.EDGE-MODAL.LABEL-LABEL'|translate}}
+        </label>
       </div>
 
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" required pattern="-?[1-9][0-9]*" [(ngModel)]="edge.influence">
-        <label class="mdl-textfield__label">Edge influence&hellip;</label>
-        <span class="mdl-textfield__error">Input is not non-zero integer!</span>
+        <label class="mdl-textfield__label">
+          {{'NETWORK-DRAWER.EDGE-MODAL.INFLUENCE-LABEL'|translate}}
+        </label>
+        <span class="mdl-textfield__error">
+          {{'ERROR.INPUT-NOT-NON-ZERO-INTEGER'|translate}}
+        </span>
       </div>
     </div>
     <div class="mdl-dialog__actions">
       <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-        Confirm
+        {{'DIALOG.OK'|translate}}
       </button>
       <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="onCancel()">
-        Cancel
+        {{'DIALOG.CANCEL'|translate}}
       </button>
     </div>
   </form>

@@ -1,21 +1,28 @@
 {
   "TITLE": "Когнитивное моделирование",
   "LANG": "Язык",
+  "STEPS-AMOUNT": "Количество шагов…",
   "PANEL": {
     "NEW": "Новый",
     "SAVE": "Сохранить",
     "SAVE-AS": "Сохранить как…",
     "LOAD": "Загрузить",
-    "QUIT": "Выйти"
+    "QUIT": "Выйти",
+    "CMG-DESCRIPTION": "Графы Когнитивного Моделирования",
+    "SAVE-DIALOG-TITLE": "Сохранить граф в файл",
+    "LOAD-DIALOG-TITLE": "Загрузить граф из файла",
+    "SAVE-CONFIRMATION-DIALOG-TITLE": "Сохранить граф?",
+    "SAVE-CONFIRMATION-DIALOG-MESSAGE": "Открытый граф содержит несохранённые изменения.\nСохранить их?\nЕсли вы выберете \"Нет\", вы потеряете все несохранённые изменения."
   },
   "PAGE": {
     "GRAPH": "Граф",
     "IMPULSE": "Импульсный процесс",
     "DETAILS": "Подробности вычислений"
   },
-  "STEPS-AMOUNT": "Количество шагов…",
   "ERROR": {
-    "IisNAVN": "Вы должны ввести корректное число!"
+    "INPUT-NOT-VALID-NUMBER": "Ввод не является числом!",
+    "INPUT-NOT-NON-ZERO-INTEGER": "Ввод не является целым положительным числом!",
+    "INPUT-NOT-INTEGER": "Ввод не является числом!"
   },
   "DETAILS": {
     "TO-EXCEL": "Экспортировать в Excel",
@@ -27,5 +34,29 @@
   "GRAPH": {
     "FORBIDDEN-NODE-TO-ITSELF": "Запрещено соединять узел с самим собой!",
     "FORBIDDEN-TWO-IMPULSES-BETWEEN-TWO-NODES": "Запрещено создавать более одного ребра между двумя узлами!"
+  },
+  "MESSAGE-BOX": {
+    "NO": "Нет",
+    "YES": "Да"
+  },
+  "DIALOG": {
+    "OK": "OK",
+    "CANCEL": "Отмена"
+  },
+  "NETWORK-DRAWER": {
+    "EDGE-MODAL": {
+      "ADD-TITLE": "Добавление связи",
+      "EDIT-TITLE": "Редактирование связи",
+      "LABEL-LABEL": "Имя связи…",
+      "INFLUENCE-LABEL": "Влияние связи…"
+    },
+    "NODE-MODAL": {
+      "ADD-TITLE": "Добавление узла",
+      "EDIT-TITLE": "Редактирование узла",
+      "LABEL-LABEL": "Имя узла…",
+      "VALUE-LABEL": "Значение узла…",
+      "IMPULSE-LABEL": "Импульс узла…",
+      "COLOR-LABEL": "Цвет узла:"
+    }
   }
 }

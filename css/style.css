@@ -112,3 +112,8 @@ router-outlet + *, .graph, .graph > div {
   overflow: hidden; }
 .mdl-layout__tab-style .mdl-layout__tab-style-ripple-container .mdl-ripple {
   background-color: rgb(255,255,255); }
+
+
+.mdl-dialog {
+  min-width: 350px;
+}

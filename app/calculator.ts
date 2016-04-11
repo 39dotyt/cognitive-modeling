@@ -4,7 +4,7 @@
  * @module calculator
  */
 import {Injectable} from 'angular2/core';
-import {GraphData, GraphDataStorage, GraphNode, GraphEdge, GraphNodeId} from './graph.component';
+import {GraphData, GraphDataStorage, GraphNode, GraphEdge} from './graph.component';
 
 const math: any = require('mathjs');
 

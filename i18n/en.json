@@ -1,21 +1,28 @@
 {
   "TITLE": "Cognitive Modeling",
   "LANG": "Language",
+  "STEPS-AMOUNT": "Amount of steps…",
   "PANEL": {
     "NEW": "New",
     "SAVE": "Save",
     "SAVE-AS": "Save as…",
     "LOAD": "Load",
-    "QUIT": "Quit"
+    "QUIT": "Quit",
+    "CMG-DESCRIPTION": "Cognitive Modeling Graphs",
+    "SAVE-DIALOG-TITLE": "Save graph file",
+    "LOAD-DIALOG-TITLE": "Load existing graph file",
+    "SAVE-CONFIRMATION-DIALOG-TITLE": "Do you want to save the graph?",
+    "SAVE-CONFIRMATION-DIALOG-MESSAGE": "You have unsaved changes in the opened graph.\nDo you want to save them?\nIf you will select \"No\" you will lost all of your unsaved changes."
   },
   "PAGE": {
     "GRAPH": "Graph",
     "IMPULSE": "Impulse process",
     "DETAILS": "Computation details"
   },
-  "STEPS-AMOUNT": "Amount of steps…",
   "ERROR": {
-    "IisNAVN": "Input is not a valid number!"
+    "INPUT-NOT-VALID-NUMBER": "Input is not a valid number!",
+    "INPUT-NOT-NON-ZERO-INTEGER": "Input is not non-zero integer!",
+    "INPUT-NOT-INTEGER": "Input is not integer!"
   },
   "DETAILS": {
     "TO-EXCEL": "Export to Excel",
@@ -27,5 +34,29 @@
   "GRAPH": {
     "FORBIDDEN-NODE-TO-ITSELF": "It is forbidden to connect a node to itself!",
     "FORBIDDEN-TWO-IMPULSES-BETWEEN-TWO-NODES": "It is forbidden to create more than one edge between two nodes!"
+  },
+  "MESSAGE-BOX": {
+    "NO": "No",
+    "YES": "Yes"
+  },
+  "DIALOG": {
+    "OK": "OK",
+    "CANCEL": "Cancel"
+  },
+  "NETWORK-DRAWER": {
+    "EDGE-MODAL": {
+      "ADD-TITLE": "Add new edge",
+      "EDIT-TITLE": "Edit edge",
+      "LABEL-LABEL": "Edge label…",
+      "INFLUENCE-LABEL": "Edge influence…"
+    },
+    "NODE-MODAL": {
+      "ADD-TITLE": "Add new node",
+      "EDIT-TITLE": "Edit node",
+      "LABEL-LABEL": "Node label…",
+      "VALUE-LABEL": "Node value…",
+      "IMPULSE-LABEL": "Node impulse…",
+      "COLOR-LABEL": "Node color:"
+    }
   }
 }

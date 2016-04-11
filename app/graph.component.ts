@@ -3,16 +3,13 @@
  * @author 0@39.yt (Yurij Mikhalevich)
  * @module 'network-drawer.component'
  */
-import {Component, ElementRef, ViewChild, Output, EventEmitter, ConcreteType, Injectable} from 'angular2/core';
+import {Component, ElementRef, ViewChild, Output, EventEmitter, Injectable} from 'angular2/core';
 import {NetworkDrawerNodeModal} from './network-drawer-node-modal';
 import {NetworkDrawerEdgeModal} from './network-drawer-edge-modal';
-
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
-/// <reference path="./vis.d.ts" />
+/// <reference path="./typings/vis.d.ts" />
 const vis: Vis = require('vis');
-
-export type GraphNodeId = NetworkNodeId;
 
 export interface GraphNodeInfo {
   label: string,
@@ -131,17 +128,17 @@ export class GraphDataStorage {
 
 @Component({
   templateUrl: '/app/graph.component.html',
-  directives: <ConcreteType[]> [NetworkDrawerNodeModal, NetworkDrawerEdgeModal]
+  directives: [NetworkDrawerNodeModal, NetworkDrawerEdgeModal]
 })
 export class Graph {
   @ViewChild('graph') private graphNode: ElementRef;
-  @ViewChild(<ConcreteType> NetworkDrawerNodeModal) private nodeModal: NetworkDrawerNodeModal;
-  @ViewChild(<ConcreteType> NetworkDrawerEdgeModal) private edgeModal: NetworkDrawerEdgeModal;
+  @ViewChild(NetworkDrawerNodeModal) private nodeModal: NetworkDrawerNodeModal;
+  @ViewChild(NetworkDrawerEdgeModal) private edgeModal: NetworkDrawerEdgeModal;
   private network: Network;
   private data: GraphDataInternal;
 
   private dataUpdatedSubscription: any;
-  private languageChangesubscribtion: any;
+  private languageChangeSubscription: any;
 
   constructor(private storage: GraphDataStorage, private translate: TranslateService) {}
 
@@ -150,9 +147,9 @@ export class Graph {
       this.dataUpdatedSubscription.unsubscribe();
       this.dataUpdatedSubscription = null;
     }
-    if (this.languageChangesubscribtion) {
-      this.languageChangesubscribtion.unsubscribe();
-      this.languageChangesubscribtion = null;
+    if (this.languageChangeSubscription) {
+      this.languageChangeSubscription.unsubscribe();
+      this.languageChangeSubscription = null;
     }
   }
 
@@ -254,7 +251,7 @@ export class Graph {
       }
     });
 
-    this.languageChangesubscribtion =
+    this.languageChangeSubscription =
       this.translate.onLangChange.subscribe((lang: {lang: string}) => {
         this.network.setOptions({locale: lang.lang});
         // this will force translation to apply immediately

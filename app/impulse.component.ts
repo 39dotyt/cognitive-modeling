@@ -8,9 +8,9 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {Calculator} from './calculator';
 import {ifTriggeredByInputExecuteOnlyIfContentIsValid} from './helpers';
 
-/// <reference path="./vis.d.ts" />
+/// <reference path="./typings/mdl.d.ts" />
+/// <reference path="./typings/vis.d.ts" />
 const vis: Vis = require('vis');
-declare const componentHandler: any;
 
 @Component({
   templateUrl: '/app/impulse.component.html',
@@ -26,11 +26,10 @@ export class Impulse {
 
   ngAfterViewInit() {
     componentHandler.upgradeElements(this.mdl.nativeElement);
-    const container = this.impulse.nativeElement;
-    this.graph = new vis.Graph2d(container, [], {
+
+    this.graph = new vis.Graph2d(this.impulse.nativeElement, [], {
       legend: true,
       showMajorLabels: false,
-
       format: {
         minorLabels: {
           millisecond: 'SSS',
@@ -44,6 +43,7 @@ export class Impulse {
         }
       }
     });
+
     this.updateVisualisation();
   }
 

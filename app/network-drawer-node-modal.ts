@@ -4,19 +4,25 @@
  * @module 'network-drawer-node-modal'
  */
 import {Component} from 'angular2/core';
+import {TranslatePipe, TranslateService} from 'ng2-translate/ng2-translate';
 import {Modal} from './modal';
 import {GraphNodeInfo} from './graph.component';
 
 @Component({
   selector: 'network-drawer-node-modal',
-  templateUrl: '/app/network-drawer-node-modal.html'
+  templateUrl: '/app/network-drawer-node-modal.html',
+  pipes: [TranslatePipe]
 })
 export class NetworkDrawerNodeModal extends Modal {
-  private title: string = 'Sample header';
+  private title: string;
   private node: GraphNodeInfo = {label: '', value: 0, impulse: 0};
 
+  constructor(private translate: TranslateService) {
+    super();
+  }
+
   showAdd() {
-    this.title = 'Add new node';
+    this.title = this.translate.instant('NETWORK-DRAWER.NODE-MODAL.ADD-TITLE');
     this.node.label = '';
     this.node.value = 0;
     this.node.impulse = 0;
@@ -24,7 +30,7 @@ export class NetworkDrawerNodeModal extends Modal {
   }
 
   showEdit(node: GraphNodeInfo) {
-    this.title = 'Edit node';
+    this.title = this.translate.instant('NETWORK-DRAWER.NODE-MODAL.EDIT-TITLE');
     this.node.label = node.label;
     this.node.value = node.value;
     this.node.impulse = node.impulse;

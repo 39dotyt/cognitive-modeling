@@ -4,33 +4,42 @@
     <div class="mdl-dialog__content">
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" required [(ngModel)]="node.label">
-        <label class="mdl-textfield__label">Node label&hellip;</label>
+        <label class="mdl-textfield__label">
+          {{'NETWORK-DRAWER.NODE-MODAL.LABEL-LABEL'|translate}}
+        </label>
       </div>
 
       <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label">-->
-        <!--Node color:-->
+        <!--{{'NETWORK-DRAWER.NODE-MODAL.COLOR-LABEL'|translate}}-->
         <!--<input type="color" required [(ngModel)]="node.color" value="#20603d">-->
-        <!--&lt;!&ndash;<label class="mdl-textfield__label">Node label&hellip;</label>&ndash;&gt;-->
       <!--</div>-->
 
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" required pattern="-?[0-9]+" [(ngModel)]="node.value">
-        <label class="mdl-textfield__label">Node value&hellip;</label>
-        <span class="mdl-textfield__error">Input is not integer!</span>
+        <label class="mdl-textfield__label">
+          {{'NETWORK-DRAWER.NODE-MODAL.VALUE-LABEL'|translate}}
+        </label>
+        <span class="mdl-textfield__error">
+          {{'ERROR.INPUT-NOT-INTEGER'|translate}}
+        </span>
       </div>
 
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" required pattern="-?[0-9]+" [(ngModel)]="node.impulse">
-        <label class="mdl-textfield__label">Node impulse&hellip;</label>
-        <span class="mdl-textfield__error">Input is not integer!</span>
+        <label class="mdl-textfield__label">
+          {{'NETWORK-DRAWER.NODE-MODAL.IMPULSE-LABEL'|translate}}
+        </label>
+        <span class="mdl-textfield__error">
+          {{'ERROR.INPUT-NOT-INTEGER'|translate}}
+        </span>
       </div>
     </div>
     <div class="mdl-dialog__actions">
       <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-        Confirm
+        {{'DIALOG.OK'|translate}}
       </button>
       <button type="button" class="mdl-button close mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="onCancel()">
-        Cancel
+        {{'DIALOG.CANCEL'|translate}}
       </button>
     </div>
   </form>

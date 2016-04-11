@@ -5,11 +5,7 @@
  */
 import {ElementRef, ViewChild} from 'angular2/core';
 
-interface MDL {
-  upgradeElements(domNode: Node): void;
-}
-
-declare const componentHandler: MDL;
+/// <reference path="./typings/mdl.d.ts" />
 
 export class Modal {
   @ViewChild('dialog') private dialog: ElementRef;

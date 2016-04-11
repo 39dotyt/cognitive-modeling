@@ -5,10 +5,13 @@
  */
 
 export function ifTriggeredByInputExecuteOnlyIfContentIsValid(onInvalid: Function) {
-  return function (
-    target: Object, name: string, descriptor: TypedPropertyDescriptor<any>) {
+  return function(
+    target: Object,
+    name: string,
+    descriptor: TypedPropertyDescriptor<any>
+  ) {
     const originalMethod: Function = descriptor.value;
-    descriptor.value = function (event: Event) {
+    descriptor.value = function(event: Event) {
       if (event && event.target instanceof HTMLInputElement) {
         const input = <HTMLInputElement> event.target;
         if (!input.validity.valid) {

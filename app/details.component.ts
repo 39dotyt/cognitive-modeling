@@ -5,11 +5,11 @@
  */
 import {Component, ElementRef, ViewChild, ChangeDetectorRef} from 'angular2/core';
 import {NgFor, NgIf} from 'angular2/common';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {TranslatePipe, TranslateService} from 'ng2-translate/ng2-translate';
 import {Calculator, CalculationResult} from './calculator';
 import {ifTriggeredByInputExecuteOnlyIfContentIsValid} from './helpers';
 
-declare const componentHandler: any;
+/// <reference path="./typings/mdl.d.ts" />
 
 const xlsx: any = require('exceljs');
 
@@ -23,7 +23,11 @@ export class Details {
   @ViewChild('input') private input: ElementRef;
   private res: CalculationResult;
 
-  constructor(private calc: Calculator, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private calc: Calculator,
+    private cdr: ChangeDetectorRef,
+    private translate: TranslateService
+  ) {}
 
   ngAfterViewInit() {
     componentHandler.upgradeElements(this.mdl.nativeElement);
@@ -48,11 +52,11 @@ export class Details {
     workbook.addWorksheet('computation details');
 
     const worksheet = workbook.getWorksheet('computation details');
-    worksheet.addRow(['Cognitive modeling']);
+    worksheet.addRow([this.translate.instant('TITLE')]);
     worksheet.addRow([]);
     worksheet.addRow([]);
 
-    worksheet.addRow(['Graph matrix']);
+    worksheet.addRow([this.translate.instant('DETAILS.GRAPH-MATRIX')]);
     const hLabels = [''];
     this.res.nodes.forEach(node => hLabels.push(node.label));
     worksheet.addRow(hLabels);
@@ -63,7 +67,7 @@ export class Details {
     });
     worksheet.addRow([]);
 
-    worksheet.addRow(['Impulse vector']);
+    worksheet.addRow([this.translate.instant('DETAILS.IMPULSE-VECTOR')]);
     const initialVectorRow: any[] = ['Q1='];
     this.res.impulses[0].forEach(column => initialVectorRow.push(column));
     worksheet.addRow(initialVectorRow);

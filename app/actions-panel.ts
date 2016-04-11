@@ -4,6 +4,7 @@
  * @module 'actions-panel'
  */
 import {Injectable} from 'angular2/core';
+import {TranslateService} from 'ng2-translate/ng2-translate';
 import {GraphDataStorage} from './graph.component';
 
 const fs = require('fs');
@@ -18,6 +19,19 @@ const app = remote.app;
 export class ActionsPanel {
   private filePath_: string;
   private fileName: string;
+  private pendingChanges_: boolean;
+  private dataUpdateSubscription: any;
+
+  constructor(private storage: GraphDataStorage, private translate: TranslateService) {
+    this.create();
+  }
+
+  private getFileTypeFilters(): Object[] {
+    return [{
+      name: this.translate.instant('PANEL.CMG-DESCRIPTION'),
+      extensions: ['cmg']
+    }];
+  }
 
   private setFilePath(newPath: string) {
     this.filePath_ = newPath;
@@ -27,27 +41,18 @@ export class ActionsPanel {
       this.fileName = path.basename(this.filePath_);
     }
   }
+
   private getFilePath() {
     return this.filePath_;
   }
 
-  private pendingChanges_: boolean;
   private set pendingChanges(changes: boolean) {
     this.pendingChanges_ = changes;
     currentWindow.setTitle(`${changes ? '*' : ''}${this.fileName || ''} Cognitive Modeling`);
   }
+
   private get pendingChanges() {
     return this.pendingChanges_;
-  }
-
-  private fileTypeFilters: Object[] = [
-    {name: 'Cognitive Modeling Graphs', extensions: ['cgg']}
-  ];
-
-  private dataUpdateSubscription: any;
-
-  constructor(private storage: GraphDataStorage) {
-    this.create();
   }
 
   ngOnDestroy() {
@@ -73,8 +78,8 @@ export class ActionsPanel {
     if (!askFilePath && !this.pendingChanges) return;
     if (askFilePath || !this.getFilePath()) {
       this.setFilePath(dialog.showSaveDialog(currentWindow, {
-        title: 'Save graph file',
-        filters: this.fileTypeFilters
+        title: this.translate.instant('PANEL.SAVE-DIALOG-TITLE'),
+        filters: this.getFileTypeFilters()
       }));
       if (!this.getFilePath()) return;
     }
@@ -87,8 +92,8 @@ export class ActionsPanel {
     if (this.dataUpdateSubscription) this.dataUpdateSubscription.unsubscribe();
 
     const filePath = dialog.showOpenDialog(currentWindow, {
-      title: 'Load existing graph file',
-      filters: this.fileTypeFilters,
+      title: this.translate.instant('PANEL.LOAD-DIALOG-TITLE'),
+      filters: this.getFileTypeFilters(),
       properties: ['openFile']
     });
     if (!filePath) return;
@@ -102,20 +107,19 @@ export class ActionsPanel {
   }
 
   private saveIfShould() {
-    if (this.pendingChanges) {
-      const shouldSave = dialog.showMessageBox(currentWindow, {
-        type: 'question',
-        buttons: ['No', 'Yes'],
-        defaultId: 1,
-        title: 'Do you want to save current graph?',
-        message:
-          `You have unsaved changes in your current graph.\n
-          Do you want to save them?\n
-          If you will select "No" you will lost all of your unsaved changes.`
-      });
-      if (shouldSave) {
-        this.save();
-      }
+    if (!this.pendingChanges) return;
+    const shouldSave = dialog.showMessageBox(currentWindow, {
+      type: 'question',
+      buttons: [
+        this.translate.instant('MESSAGE-BOX.NO'),
+        this.translate.instant('MESSAGE-BOX.YES')
+      ],
+      defaultId: 1,
+      title: this.translate.instant('PANEL.SAVE-CONFIRMATION-DIALOG-TITLE'),
+      message: this.translate.instant('PANEL.SAVE-CONFIRMATION-DIALOG-MESSAGE')
+    });
+    if (shouldSave) {
+      this.save();
     }
   }
 

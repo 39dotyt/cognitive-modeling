@@ -4,6 +4,10 @@
  * @module main
  */
 import {bootstrap} from 'angular2/platform/browser';
+import {Component, ElementRef, ViewChild, provide} from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteDefinition} from 'angular2/router';
+import {HTTP_PROVIDERS, Http} from 'angular2/http';
+import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 
 import {Graph, GraphDataStorage} from './graph.component';
 import {Calculator} from './calculator';
@@ -11,18 +15,11 @@ import {Impulse} from './impulse.component';
 import {Details} from './details.component';
 import {ActionsPanel} from './actions-panel';
 
-import {Type} from 'angular2/src/facade/lang';
-import {Component, ElementRef, ViewChild, provide} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteDefinition} from 'angular2/router';
-import {HTTP_PROVIDERS, Http} from 'angular2/http';
-
-import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
-
 const ElectronSettings = require('electron-settings');
 
-const settings = new ElectronSettings();
+/// <reference path="./typings/mdl.d.ts" />
 
-declare const componentHandler: any;
+const settings = new ElectronSettings();
 
 const routes = [
   {path: '/', name: 'Graph', component: Graph, title: 'PAGE.GRAPH'},
@@ -38,7 +35,6 @@ const routes = [
 })
 @RouteConfig(<RouteDefinition[]> routes)
 class AppComponent {
-  private title: string = 'Cognitive Modeling';
   private routes: any[] = routes;
   @ViewChild('tab') private firstTab: ElementRef;
   private activeTab: Element;
@@ -57,7 +53,6 @@ class AppComponent {
       settings.set('language', language);
     }
 
-    // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 
     this.translate.onLangChange.subscribe((lang: {lang: string}) => {
@@ -65,7 +60,6 @@ class AppComponent {
       this.currentLanguage = lang.lang;
     });
 
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use(language);
   }
 
@@ -88,7 +82,7 @@ class AppComponent {
   }
 }
 
-bootstrap(<Type> AppComponent, [
+bootstrap(AppComponent, [
   GraphDataStorage,
   Calculator,
   ActionsPanel,
